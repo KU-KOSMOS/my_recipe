@@ -1,5 +1,9 @@
 import AsyncStorage from "@react-native-community/async-storage";
 
+/**
+ * @test
+ * Store data on asyncStorage
+ */
 const storeData = async value => {
     console.log("storing!");
 
@@ -11,6 +15,11 @@ const storeData = async value => {
     }
 };
 
+/**
+ * Fetch data from asyncStorage
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/async-storage/
+ */
 const getData = async () => {
     console.log("getting!");
 
@@ -22,6 +31,12 @@ const getData = async () => {
     }
 };
 
+/**
+ * Function RetrieveData
+ *
+ * Retrieve data from asyncStorage on device.
+ * @return array of data ordered by last modified date
+ */
 const RetrieveData = async () => {
     const data = {
         "example-recipe": [
@@ -64,8 +79,15 @@ const RetrieveData = async () => {
         ],
     };
 
+    /**
+     * @test
+     * store the data on asyncStorage
+     */
     await storeData(data);
 
+    /**
+     * Fetch the data using getData function
+     */
     const gotData = await getData();
 
     if (!gotData) await storeData(data);
@@ -74,6 +96,9 @@ const RetrieveData = async () => {
 
     const dataArray = gotData["example-recipe"];
 
+    /**
+     * If order of data is random, sort the array of data
+     */
     dataArray.sort((a, b) => {
         a = a["last-modified-at"];
         b = b["last-modified-at"];

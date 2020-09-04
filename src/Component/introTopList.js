@@ -3,10 +3,20 @@ import { Image, View, Text, VirtualizedList, StyleSheet } from "react-native";
 import CircleScroll from "./circleScroll";
 import RetrieveData from "./retrieveData";
 
+/**
+ * Function getItemCountFetched
+ *
+ * @return the count of fetched items
+ */
 const getItemCountFetched = data => {
     return data.length;
 };
 
+/**
+ * Function getItemFetched
+ *
+ * @return array of fetched data
+ */
 const getItemFetched = (data, index) => {
     // console.log(data);
     return data[index];
@@ -28,11 +38,19 @@ const Item = ({ title, date }) => {
     );
 };
 
+/**
+ * Component IntroTopList
+ *
+ * @return component of top list on intro screen
+ */
 const IntroTopList = () => {
     const [state, setState] = useState(1);
     const [ready, setReady] = useState(false);
     const [data, setData] = useState(null);
 
+    /**
+     * When the component is ready, retrieve data from asyncStorage on device
+     */
     useEffect(() => {
         const fetch = async () => {
             const data = await RetrieveData();
@@ -45,15 +63,31 @@ const IntroTopList = () => {
     }, []);
 
     if (!ready) {
+        /**
+         * If the data is not ready, render empty component
+         */
         return <></>;
     } else {
+        /**
+         * for testing
+         */
         console.log(data);
+
         return (
             <>
                 <Text style={styles.title}>나의 최근 레시피</Text>
                 <View style={styles.container}>
+                    {/**
+                     * VirtualizedList for rendering items on top of the screen
+                     *
+                     * @see https://docs.expo.io/versions/latest/react-native/virtualizedlist/
+                     */}
                     <VirtualizedList
                         getScrollRef={ref => console.log(ref)}
+                        /**
+                         * When the viewable item changed,
+                         * Change the state from previous item to current item.
+                         */
                         onViewableItemsChanged={({ viewableItems }) => {
                             viewableItems.map(change => {
                                 if (change.isViewable) {
@@ -61,6 +95,9 @@ const IntroTopList = () => {
                                 }
                             });
                         }}
+                        /**
+                         * parameters for sticky scroll of list
+                         */
                         decelerationRate={0}
                         snapToAlignment="center"
                         snapToInterval={365}

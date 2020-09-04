@@ -1,12 +1,19 @@
 import React from "react";
 import { View, Text, SectionList, StyleSheet } from "react-native";
 
+/**
+ * @param title card title
+ * @return card component with data
+ */
 const ListItem = ({ title }) => (
     <View style={styles.listCard}>
         <Text style={{ color: "white" }}>{title}</Text>
     </View>
 );
 
+/**
+ * @test without fetching data
+ */
 const SectionData = [
     {
         title: "즐겨찾기",
@@ -22,6 +29,11 @@ const SectionData = [
     },
 ];
 
+/**
+ * Component IntroBottomList
+ *
+ * @return component of bottom list on intro screen
+ */
 const IntroBottomList = () => {
     return (
         <View style={styles.listContainer}>
@@ -29,6 +41,11 @@ const IntroBottomList = () => {
                 목록
             </Text>
             <View style={{ ...styles.listBackground }}>
+                {/**
+                 * Section List for rendering items on the bottom of the screen
+                 *
+                 * @see https://docs.expo.io/versions/latest/react-native/sectionlist/
+                 */}
                 <SectionList
                     borderRadius={10}
                     sections={SectionData}

@@ -1,6 +1,9 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
+/**
+ * @return svg component for rendering background of splash page
+ */
 export const SvgComponent = () => {
     return (
         <Svg

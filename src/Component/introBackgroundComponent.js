@@ -1,6 +1,9 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
+/**
+ * @return background component of intro screen
+ */
 export const IntroBackgroundComponent = () => {
     return (
         <Svg

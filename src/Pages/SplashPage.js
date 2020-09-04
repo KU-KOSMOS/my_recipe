@@ -14,6 +14,9 @@ import {
     NotoSansKR_900Black,
 } from "@expo-google-fonts/noto-sans-kr";
 
+/**
+ * Component for rendering custom splash page
+ */
 const SplashPage = () => {
     let [fontsLoaded] = useFonts({
         NotoSansKR_100Thin,

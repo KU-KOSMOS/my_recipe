@@ -4,6 +4,13 @@ import { View, StyleSheet } from "react-native";
 
 let widths;
 
+/**
+ * Component CircleScroll
+ *
+ * @param state number or state of item viewing currently
+ * @param number total number of items
+ * @return component of svg items highlighted on one circle of focused item
+ */
 const CircleScroll = ({ state, number }) => {
     const circles = [];
     for (let i = 0; i < number; i++) {
